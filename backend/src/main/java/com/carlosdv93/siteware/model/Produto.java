@@ -59,5 +59,14 @@ public class Produto implements Serializable {
 	public void setQtde(int qtde) {
 		this.qtde = qtde;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto: \n"
+				+ "Nome: " + getNome() + "\n"
+				+ "Valor: " + getValor() + "\n";
+	}
+	
+	
 	
 }
