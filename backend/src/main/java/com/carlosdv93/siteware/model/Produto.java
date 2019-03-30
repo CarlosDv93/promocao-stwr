@@ -20,16 +20,15 @@ public class Produto implements Serializable {
 	
 	private String nome;
 	private String valor;
-	private int qtde;
 	
 	public Produto() {
 		
 	}
 	
-	public Produto(String nome, String valor, int qtde) {
+	public Produto(String nome, String valor) {
 		this.nome = nome;
 		this.valor = valor;
-		this.qtde = qtde;
+		
 	}
 
 	public Long getId() {
@@ -52,13 +51,6 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
-	public int getQtde() {
-		return qtde;
-	}
-
-	public void setQtde(int qtde) {
-		this.qtde = qtde;
-	}
 
 	@Override
 	public String toString() {

@@ -1,0 +1,18 @@
+<div class="container-fluid margin-top-fix">
+    <h4>Detalhes do Produto</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="produto">
+                Nome: <p class="form-control-static"> {{ produto.nome }} </p> 
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="valor">
+                Valor: <p class="form-control-static">{{produto.valor}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-promocao [produto]="produto"></app-promocao>

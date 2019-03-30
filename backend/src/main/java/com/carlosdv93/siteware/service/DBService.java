@@ -20,7 +20,7 @@ public class DBService {
 	
 	@Bean
 	public void instatiateDatabase() {
-		Produto prod1 = new Produto("Produto", "20", 20);
+		Produto prod1 = new Produto("Produto", "20");
 		produtoRP.save(prod1);
 		log.info("Salvo");
 	}
