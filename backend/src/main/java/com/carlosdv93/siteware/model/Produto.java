@@ -21,14 +21,16 @@ public class Produto implements Serializable {
 	private String nome;
 	private String valor;
 	
+	private Promocao promocao;
+	
 	public Produto() {
 		
 	}
 	
-	public Produto(String nome, String valor) {
+	public Produto(String nome, String valor, Promocao promocao) {
 		this.nome = nome;
 		this.valor = valor;
-		
+		this.promocao = promocao;
 	}
 
 	public Long getId() {
@@ -51,6 +53,13 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
+	public Promocao getPromocao() {
+		return promocao;
+	}
+
+	public void setPromocao(Promocao promocao) {
+		this.promocao = promocao;
+	}
 
 	@Override
 	public String toString() {

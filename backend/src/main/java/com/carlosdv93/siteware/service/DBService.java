@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.carlosdv93.siteware.SitewarePromocaoApplication;
 import com.carlosdv93.siteware.model.Produto;
+import com.carlosdv93.siteware.model.Promocao;
 import com.carlosdv93.siteware.repositories.ProdutoRepository;
+import com.carlosdv93.siteware.repositories.PromocaoRepository;
+import com.carlosdv93.siteware.utils.TipoPromocao;
 
 @Service
 public class DBService {
@@ -18,10 +21,29 @@ public class DBService {
 	@Autowired
 	private ProdutoRepository produtoRP;
 	
+	@Autowired
+	private PromocaoRepository promRP;
+	
 	@Bean
 	public void instatiateDatabase() {
-		Produto prod1 = new Produto("Produto", "20");
+		
+		Produto prod1 = new Produto("Produto 1", "5", null);
 		produtoRP.save(prod1);
+		
+		Produto prod2 = new Produto("Produto 2", "10", null);
+		produtoRP.save(prod2);
+		
+		Produto prod3 = new Produto("Produto 3", "10", null);
+		produtoRP.save(prod3);
+		
+		
+		Promocao tresXDez = new Promocao("3 x 10", TipoPromocao.PRECO, 3, 10);
+		promRP.save(tresXDez);
+		
+		Promocao leve2Pg1 = new Promocao("Leve 2 Pague 1", TipoPromocao.QUANTIDADE, 2, 1);
+		promRP.save(leve2Pg1);
+		
+		
 		log.info("Salvo");
 	}
 

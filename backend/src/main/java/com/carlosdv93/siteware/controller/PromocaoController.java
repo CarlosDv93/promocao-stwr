@@ -16,14 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.carlosdv93.siteware.model.Produto;
+import com.carlosdv93.siteware.model.Promocao;
 import com.carlosdv93.siteware.repositories.ProdutoRepository;
+import com.carlosdv93.siteware.repositories.PromocaoRepository;
 
 @RestController
-@RequestMapping(value="/produto")
-public class ProdutoController {
+@RequestMapping(value="/promocao")
+public class PromocaoController {
 	
 	@Autowired
 	private ProdutoRepository repository;
+	
+	@Autowired
+	private PromocaoRepository promoRP;
 	
 	@GetMapping(path="")
 	public Iterable<Produto> getAll(){
@@ -31,17 +36,17 @@ public class ProdutoController {
 	}
 	
 	@PostMapping(path="")
-	public ResponseEntity<String> insert(@Valid @RequestBody Produto produto){
-		produto = repository.save(produto);
+	public ResponseEntity<String> insert(@Valid @RequestBody Promocao promocao){
+		promocao = promoRP.save(promocao);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(produto.getId()).toUri();
+				.buildAndExpand(promocao.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping(path="/{id}")
-	public ResponseEntity<Optional<Produto>> getById(@PathVariable Long id){
-		Optional<Produto> produto = repository.findById(id);
-		return ResponseEntity.ok(produto);
+	public ResponseEntity<Optional<Promocao>> getById(@PathVariable Long id){
+		Optional<Promocao> promocao = promoRP.findById(id);
+		return ResponseEntity.ok(promocao);
 	}
 	
 }

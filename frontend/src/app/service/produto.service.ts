@@ -17,7 +17,7 @@ export class ProdutoService {
     public buscaProdutoPorId(id: number) : Observable<Produto>{
         return this.http.get(`${this.url_api}/${id}`)
             .map((retorno: Produto) => {
-                return ConverterProdutoPromocao(retorno, null);
+                return retorno;
             })
     }
 }
