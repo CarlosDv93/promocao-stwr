@@ -22,7 +22,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private String valor;
 	
-	//@ManyToOne
+	@ManyToOne
 	private Promocao promocao;
 	
 	public Produto() {

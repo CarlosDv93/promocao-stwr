@@ -1,34 +1,61 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from 'src/app/model/produto.model';
 import { TipoPromocao } from 'src/app/model/utils/tipoPromocao.enum';
 import { Promocao } from 'src/app/model/promocao.model';
 import { PromocaoService } from 'src/app/service/promocao.service';
+import { Observable } from 'rxjs';
+import { ProdutoService } from 'src/app/service/produto.service';
 
 @Component({
   selector: 'app-promocao',
   templateUrl: './promocao.component.html',
   styleUrls: ['./promocao.component.css'],
-  providers: [PromocaoService]
+  providers: [PromocaoService, ProdutoService]
 })
-export class PromocaoComponent implements OnInit {
+export class PromocaoComponent implements OnInit, OnChanges {
 
   public formulario: FormGroup;
-  public sel1 : FormGroup;
+  public sel1: FormGroup;
   @Input() produto: Produto;
 
   public promocoes: Promocao[];
+  public promocao: Promocao;
 
   constructor(private formBuilder: FormBuilder,
-    private promService: PromocaoService) { }
+    private promService: PromocaoService,
+    private prodService: ProdutoService) { }
 
   ngOnInit() {
     this.configurarFormulario();
     this.promService.buscaProm()
       .subscribe((retorno: any) => {
-        console.log("Prom" , retorno);
+        console.log("Prom", retorno);
         return this.promocoes = retorno;
       })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("onchanges", changes);
+  }
+
+  filterChanged(selectedValue: number) {
+    console.log('value is ', selectedValue);
+    this.promService.buscaPromPorId(selectedValue)
+      .subscribe((retorno : Promocao) => { 
+        this.promocao = retorno;
+        console.log(this.promocao.tipo); 
+        this.formulario.setValue({
+          nome: this.promocao.nome,
+          qtdeItens: this.promocao.qtde,
+          valor: this.promocao.pagar,
+          tipo: this.promocao.tipo
+        })    
+        return this.promocao;
+      });
+    
+      console.log(this.promocao);
+
   }
 
   public configurarFormulario() {
@@ -48,23 +75,23 @@ export class PromocaoComponent implements OnInit {
 
     console.log(this.formulario.value);
     console.log(this.produto);
+    console.log(this.promocao);
 
-    let nomePromocao = this.formulario.value.nome;
-    let quantidade = this.formulario.value.qtdeItens;
-    let valorItens = this.formulario.value.valor;
+    this.produto.promocao = this.promocao;
 
-    if (this.formulario.value.tipo == 'preco') {
-      //vincular Promoção ao Produto
-
-    }
+    console.log("produtoxprom", this.produto);
+    this.produto = this.prodService.atualizaPromocao(this.produto.id, this.produto)
+      .subscribe((retorno: any) => {
+        return retorno;
+      })
 
   }
 
-  salvar(){
+  salvar() {
     console.log(this.sel1.value);
   }
 
-  onChange($event, i){
+  onChange($event, i) {
     console.log("Teste dropdown");
     console.log($event);
     console.log(i);

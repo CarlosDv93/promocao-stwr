@@ -1,7 +1,7 @@
 package com.carlosdv93.siteware.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,8 +29,8 @@ public class Promocao implements Serializable {
 	private int qtde;
 	private double pagar;
 	
-	//@OneToMany(mappedBy="promocao", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	//private ArrayList<Produto> produtos;
+	@OneToMany(mappedBy="promocao", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity=Produto.class)
+	private List<Produto> produtos;
 	
 	
 	public Promocao() {

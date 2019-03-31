@@ -47,15 +47,19 @@ public class ProdutoController {
 		return ResponseEntity.ok(produto);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(path="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Optional<Produto>> atualizaPromocaoById(@PathVariable Long id, @RequestBody Promocao promocao){
-		Optional<Produto> produto = repository.findById(id);
-		if(produto != null) {
-			Produto prod = produto.get();
-			prod.setPromocao(promocao);
+	public ResponseEntity<Produto> atualizaPromocaoById(@PathVariable Long id, @RequestBody Produto produto){
+		Optional<Produto> produto1 = repository.findById(id);
+		if(produto1 != null) {
+			System.out.println(produto);
+			Produto prod = produto1.get();
+			prod.setPromocao(produto.getPromocao());
 			repository.save(prod);
+			return ResponseEntity.ok(produto);
+		} else {
+			return (ResponseEntity<Produto>) ResponseEntity.badRequest();
 		}
-		return ResponseEntity.ok(produto);
 	}
 	
 }

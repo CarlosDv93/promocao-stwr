@@ -1,17 +1,18 @@
 import { TipoPromocao } from './utils/tipoPromocao.enum';
 
 export class Promocao {
-    private id : number;
-    private nome: string;
-    private tipoPromocao: TipoPromocao;
-	private qtde : number;
-	private pagar : number;
+    public id : number;
+    public nome: string;
+    public tipo: TipoPromocao;
+	public qtde : number;
+	public pagar : number;
 
     constructor(id: number, nome: string, tipo: TipoPromocao, qtde: number, pagar: number){
         this.id = id;
         this.nome = nome;
-        this.tipoPromocao = tipo;
+        this.tipo = tipo;
         this.qtde = qtde;
         this.pagar = pagar;
     }
+
 }
