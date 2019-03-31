@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.carlosdv93.siteware.model.Produto;
 import com.carlosdv93.siteware.model.Promocao;
-import com.carlosdv93.siteware.repositories.ProdutoRepository;
 import com.carlosdv93.siteware.repositories.PromocaoRepository;
 
 @RestController
@@ -25,14 +23,11 @@ import com.carlosdv93.siteware.repositories.PromocaoRepository;
 public class PromocaoController {
 	
 	@Autowired
-	private ProdutoRepository repository;
-	
-	@Autowired
 	private PromocaoRepository promoRP;
 	
 	@GetMapping(path="")
-	public Iterable<Produto> getAll(){
-		return repository.findAll();
+	public Iterable<Promocao> getAll(){
+		return promoRP.findAll();
 	}
 	
 	@PostMapping(path="")

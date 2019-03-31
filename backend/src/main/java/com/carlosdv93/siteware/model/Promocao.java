@@ -1,11 +1,15 @@
 package com.carlosdv93.siteware.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.carlosdv93.siteware.utils.TipoPromocao;
@@ -14,7 +18,7 @@ import com.carlosdv93.siteware.utils.TipoPromocao;
 @Table(name="promocao")
 public class Promocao implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 12L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,6 +29,13 @@ public class Promocao implements Serializable {
 	private int qtde;
 	private double pagar;
 	
+	//@OneToMany(mappedBy="promocao", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	//private ArrayList<Produto> produtos;
+	
+	
+	public Promocao() {
+	}
+
 	public Promocao(String nome, TipoPromocao tipo, int qtde, double pagar) {
 		this.nome = nome;
 		this.tipo = tipo;

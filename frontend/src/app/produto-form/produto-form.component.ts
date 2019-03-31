@@ -41,7 +41,7 @@ export class ProdutoFormComponent implements OnInit {
   enviar(){
     console.log(this.formulario);
     this.atualizar = false;
-    this.http.post(`http://127.0.0.1:8080/produto`, this.formulario.value, this.options)
+    this.http.post(`http://127.0.0.1:8080/produto`, this.formulario.value)
       .subscribe((retorno: any ) => {
         if(retorno.status === 201){
           this.inseridoSucesso = true;

@@ -13,35 +13,4 @@ export class Produto {
         this.promocao = promocao;
     }
 
-    public getPromocao() {
-        return this.promocao;
-    }
-
-    public getId(){
-        return this.id ;
-    }
-
-    public getValor(){
-        return this.valor;
-    }
-
-    public getNome(){
-        return this.nome;
-    }
-
-    public setPromocao(promo: Promocao) {
-        this.promocao = promo;
-    }
-
-    public setId(id: number){
-        this.id = id;
-    }
-
-    public setValor(valor: number){
-        this.valor = valor;
-    }
-
-    public setNome(nome: string){
-        this.nome = nome;
-    }
 }

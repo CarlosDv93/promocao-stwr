@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { ProdutoService } from '../service/produto.service';
 import { Produto } from '../model/produto.model';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.css'],
-  providers: [ProdutoService]
+  providers: [ProdutoService, {provide: LOCALE_ID, useValue: 'pt'}]
 })
 export class ProdutoComponent implements OnInit {
 
