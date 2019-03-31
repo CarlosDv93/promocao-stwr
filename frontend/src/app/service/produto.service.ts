@@ -29,4 +29,12 @@ export class ProdutoService {
                 return retorno;
             })
     }
+
+    public buscaProduto(){
+        return this.http.get(`${this.url_api}/`).
+            map((retorno: any) => {
+                console.log("buscaProduto", retorno);
+                return retorno;
+            })
+    }
 }
