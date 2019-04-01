@@ -17,7 +17,9 @@
           <td>{{produto.nome}}</td>
           <td>{{produto.valor}}</td>
           <td>
-            <i class="material-icons" [routerLink]="['produto', produto.id]">mode_edit</i> 
+            <i class="material-icons" > <a [routerLink]="['produto', produto.id]" title="Editar"> mode_edit </a></i>
+            &nbsp;
+            <i class="material-icons"> <a [routerLink]="['produto', produto.id]" title="Vincular Promocao"> add_to_queue  </a> </i> 
           </td>
         </tr>
       </tbody>

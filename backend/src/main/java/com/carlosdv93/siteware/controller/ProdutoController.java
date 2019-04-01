@@ -34,7 +34,7 @@ public class ProdutoController {
 	}
 	
 	@PostMapping(path="")
-	public ResponseEntity<String> insert(@Valid @RequestBody Produto produto){
+	public ResponseEntity<?> insert(@Valid @RequestBody Produto produto){
 		produto = repository.save(produto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(produto.getId()).toUri();

@@ -23,18 +23,26 @@
       </div>
 
 
-      <label>Nome Promoção: </label>
-      <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
-        disabled />
+      <div class="nome">
+        <label>Nome Promoção: </label>
+        <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
+          disabled />
+      </div>
 
       <br>
 
-      <label> Quantidade de Itens </label>
-      <input type="number" formControlName="qtdeItens" disabled />
+      <div class="qtd">
+        <label> Quantidade de Itens </label>
+        <input type="number" formControlName="qtdeItens" disabled />
+      </div>
 
-      <label> Valor a Pagar ou Qtde de Itens a pagar </label>
-      <input type="number" formControlName="valor" disabled />
+      <br>
 
+      <div class="pagar">
+        <label> Valor a Pagar ou Qtde de Itens a pagar </label>
+        <input type="number" formControlName="valor" disabled />
+
+      </div>
       <br>
 
       <button type="submit" class="btn btn-primary">Salvar</button>

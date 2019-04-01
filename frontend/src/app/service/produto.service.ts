@@ -38,4 +38,12 @@ export class ProdutoService {
                 return retorno;
             })
     }
+
+    public salvarProduto(produto: Produto){
+        return this.http.post<Produto>(`${this.url_api}/`, produto, {observe: 'response'})
+            .map((retorno: HttpResponse<Produto>) => {
+                console.log("Produto salvar: ", retorno)
+                return retorno;
+            })
+    }
 }
