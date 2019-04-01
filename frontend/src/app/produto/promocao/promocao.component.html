@@ -5,7 +5,6 @@
       <option *ngFor="let prom of promocoes; let i = index" (click)="onChange($event, i)" [value]="prom.id">
         {{ prom.nome }}</option>
     </select>
-    <button type="submit" class="btn btn-primary">Salvar</button>
   </form>
 </div>
 

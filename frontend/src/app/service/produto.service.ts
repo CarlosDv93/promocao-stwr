@@ -8,21 +8,21 @@ import { Promocao } from '../model/promocao.model';
 
 @Injectable()
 export class ProdutoService {
-    
+
     private url_api = 'http://localhost:8080/produto'
 
-    constructor(private httpClientModule : HttpClientModule,
-        private http : HttpClient){
+    constructor(private httpClientModule: HttpClientModule,
+        private http: HttpClient) {
     }
 
-    public buscaProdutoPorId(id: number) : Observable<Produto>{
+    public buscaProdutoPorId(id: number): Observable<Produto> {
         return this.http.get(`${this.url_api}/${id}`)
             .map((retorno: Produto) => {
                 return retorno;
             })
     }
 
-    public atualizaPromocao(id: number, produto : Produto){
+    public atualizaPromocao(id: number, produto: Produto) {
         return this.http.put(`${this.url_api}/${id}`, produto).
             map((retorno: any) => {
                 console.log("AtualizaPromocao", retorno);
@@ -30,10 +30,11 @@ export class ProdutoService {
             })
     }
 
-    public buscaProduto(){
+    public buscaProdutoParaCarrinho() {
         return this.http.get(`${this.url_api}/`).
             map((retorno: any) => {
                 console.log("buscaProduto", retorno);
+
                 return retorno;
             })
     }
