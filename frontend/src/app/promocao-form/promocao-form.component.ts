@@ -1,3 +1,4 @@
+import { Promocao } from 'src/app/model/promocao.model';
 import { PromocaoService } from './../service/promocao.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class PromocaoFormComponent implements OnInit {
 
   public formulario: FormGroup;
+  public allPromocao: Promocao[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,6 +22,15 @@ export class PromocaoFormComponent implements OnInit {
 
   ngOnInit() {
     this.configuraForm();
+    this.buscaProm();
+  }
+
+  buscaProm(): any {
+    this.promService.buscaProm()
+      .subscribe(
+        (retorno: Promocao[]) => {
+          return this.allPromocao = retorno;
+        } )
   }
   
   configuraForm(): any {
