@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Promocao } from 'src/app/model/promocao.model';
 import { PromocaoService } from './../service/promocao.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,9 +14,13 @@ export class PromocaoFormComponent implements OnInit {
 
   public formulario: FormGroup;
   public allPromocao: Promocao[];
+  public promocao: Promocao;
+  private id: number;
+  private exibeLista: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
+    private rota: ActivatedRoute,
     private promService: PromocaoService ) {
 
   }
@@ -23,6 +28,20 @@ export class PromocaoFormComponent implements OnInit {
   ngOnInit() {
     this.configuraForm();
     this.buscaProm();
+    this.id = this.rota.snapshot.params['id'];
+
+    if(this.id !== null || this.id !== undefined) {
+      this.buscaPromPorID();
+      this.exibeLista = false;
+    }
+  }
+
+  buscaPromPorID(): any {
+    this.promService.buscaPromPorId(this.id)
+    .subscribe(
+      (retorno: Promocao) => {
+        return this.promocao = retorno;
+      } )
   }
 
   buscaProm(): any {

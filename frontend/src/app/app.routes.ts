@@ -11,6 +11,7 @@ export const APP_ROUTES: Routes = [
     {path: "", component: ProdutoFormComponent},
     {path: "carrinho", component: CarrinhoComponent},
     {path: "produto/:id", component: ProdutoComponent},
+    {path: "promocao/:id", component: PromocaoFormComponent},
     {path: "promocao", component: PromocaoFormComponent}
 ]
 
