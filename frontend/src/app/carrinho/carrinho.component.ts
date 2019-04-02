@@ -75,7 +75,7 @@ export class CarrinhoComponent implements OnInit, OnChanges {
       let promQtde = this.qtdeForm.value / produto.promocao.qtde;
       promQtde = Math.trunc(promQtde);
       console.log(promQtde);
-      produto.valorPagar = promQtde * produto.valor;
+      produto.valorPagar = promQtde * produto.valor * produto.promocao.pagar;
 
       //Quantidade não dentro da promocao
       let promQtdeOut = this.qtdeForm.value % produto.promocao.qtde;

@@ -25,8 +25,8 @@ export class PromocaoFormComponent implements OnInit {
   configuraForm(): any {
     this.formulario = this.formBuilder.group({
       nome: [null],
-      qtdeItens: [null],
-      valor: [null],
+      qtde: [null],
+      pagar: [null],
       tipo: [null]
     });
   }
