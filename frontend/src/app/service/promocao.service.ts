@@ -26,4 +26,11 @@ export class PromocaoService {
                 return retorno;
             })
     }
+
+    public inserePromocao(promocao: any) : Observable<HttpResponse<Promocao>> {
+        return this.http.post(`${this.url_api}`, promocao, {observe : 'response'})
+            .map((retorno: HttpResponse<Promocao>) => {
+                return retorno;
+            }) 
+    }
 }
