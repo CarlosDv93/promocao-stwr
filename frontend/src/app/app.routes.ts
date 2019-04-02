@@ -1,3 +1,4 @@
+import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
 import { ModuleWithProviders } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
@@ -10,7 +11,7 @@ export const APP_ROUTES: Routes = [
     {path: "", component: ProdutoFormComponent},
     {path: "carrinho", component: CarrinhoComponent},
     {path: "produto/:id", component: ProdutoComponent},
-    {path: "promocao", component: PromocaoComponent}
+    {path: "promocao", component: PromocaoFormComponent}
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

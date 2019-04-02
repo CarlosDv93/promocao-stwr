@@ -12,6 +12,7 @@ import { ProdutoComponent } from './produto/produto.component';
 import { TopoComponent } from './topo/topo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { routing } from './app.routes';
+import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { routing } from './app.routes';
     CarrinhoComponent,
     PromocaoComponent,
     ProdutoComponent,
-    TopoComponent
+    TopoComponent,
+    PromocaoFormComponent
   ],
   imports: [
     BrowserModule,

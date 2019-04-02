@@ -1,0 +1,68 @@
+<div class="container tipoProm">
+  <h4>Tipo Promoção:</h4>
+  <div class="row">
+    <div class="col colMargin border border-primary">
+
+      <form (ngSubmit)="salvarPromocao()" [formGroup]="formulario">
+        <div class="radio radio-inline">
+          <label><input type="radio" name="tipo" #radioPreco formControlName="tipo" value="PRECO">Preço</label>
+        </div>
+
+        <div class="radio radio-inline">
+          <label><input type="radio" name="tipo" #radioQuantidade formControlName="tipo"
+              value="QUANTIDADE">Quantidade</label>
+        </div>
+
+        <hr>
+
+        <div class="formPreco" *ngIf="this.formulario.value.tipo === 'PRECO'" >
+          <div class="nome">
+            <label>Nome Promoção: </label>
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Leve X Produtos por Y" />
+          </div>
+
+          <br>
+
+          <div class="qtd">
+            <label> Quantidade de Itens para ativar a promoção</label> <br>
+            <input type="number" formControlName="qtdeItens" placeholder="5"/>
+          </div>
+
+          <br>
+
+          <div class="pagar">
+            <label> Valor a Pagar pelos itens da promoção</label> <br>
+            <input type="number" formControlName="valor" placeholder="20"/>
+
+          </div>
+          <br>
+        </div>
+
+        <div class="formPreco" *ngIf="this.formulario.value.tipo === 'QUANTIDADE'" >
+          <div class="nome">
+            <label>Nome Promoção: </label>
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y" />
+          </div>
+
+          <br>
+
+          <div class="qtd">
+            <label> Quantidade de Itens a levar para ativar a promoção </label> <br>
+            <input type="number" formControlName="qtdeItens" placeholder="3"/>
+          </div>
+
+          <br>
+
+          <div class="pagar">
+            <label> Quantidade de itens que serão pagos </label> <br>
+            <input type="number" formControlName="valor" placeholder="2"/>
+
+          </div>
+          <br>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
