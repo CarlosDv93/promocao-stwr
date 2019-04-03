@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Promocao } from 'src/app/model/promocao.model';
 import { PromocaoService } from './../service/promocao.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,11 +17,12 @@ export class PromocaoFormComponent implements OnInit {
   public allPromocao: Promocao[];
   public promocao: Promocao;
   private id: number;
-  private exibeLista: boolean = true;
+  public exibeLista: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
     private rota: ActivatedRoute,
+    private route: Router,
     private promService: PromocaoService ) {
 
   }
@@ -28,10 +30,13 @@ export class PromocaoFormComponent implements OnInit {
   ngOnInit() {
     this.configuraForm();
     this.buscaProm();
+    
     this.id = this.rota.snapshot.params['id'];
+    
 
-    if(this.id !== null || this.id !== undefined) {
+    if((typeof this.id) !== "undefined") {
       this.buscaPromPorID();
+      console.log("Dentro do if")
       this.exibeLista = false;
     }
   }
@@ -40,6 +45,13 @@ export class PromocaoFormComponent implements OnInit {
     this.promService.buscaPromPorId(this.id)
     .subscribe(
       (retorno: Promocao) => {
+        console.log(retorno)
+        this.formulario.setValue({
+          nome: retorno.nome,
+          qtde: retorno.qtde,
+          pagar: retorno.pagar,
+          tipo: retorno.tipo
+        })  
         return this.promocao = retorno;
       } )
   }
@@ -54,10 +66,10 @@ export class PromocaoFormComponent implements OnInit {
   
   configuraForm(): any {
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      qtde: [null],
-      pagar: [null],
-      tipo: [null]
+      nome: [null, Validators.required],
+      qtde: [null, [Validators.required, Validators.min(1)]],
+      pagar: [null, Validators.required],
+      tipo: [null, Validators.required]
     });
   }
 
@@ -66,8 +78,27 @@ export class PromocaoFormComponent implements OnInit {
 
     this.promService.inserePromocao(this.formulario.value)
       .subscribe((retorno: any) => {
+        if(retorno.status == 201){
+          //this.route.navigateByUrl(`/promocao`);
+          this.buscaProm();
+          
+          //this.exibeLista = true;
+        }
         console.log(retorno);
+        this.formulario.reset();
         return retorno;
+      })
+  }
+
+  atualizarProm(){
+    console.log("Atualiza Promocao: ", this.formulario.value);
+    console.log("Atualiza Promocao id: ", this.id);
+
+    this.promService.atualizaPromocao(this.id, this.formulario.value)
+      .subscribe((retorno: HttpResponse<Promocao>) => {
+        console.log(retorno);
+        this.route.navigate(['/promocao']);
+        this.exibeLista = true;
       })
   }
 

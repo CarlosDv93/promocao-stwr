@@ -33,4 +33,11 @@ export class PromocaoService {
                 return retorno;
             }) 
     }
+
+    public atualizaPromocao(id: number, promocao: Promocao): Observable<HttpResponse<Promocao>> {
+        return this.http.put(`${this.url_api}/${id}`, promocao, {observe : 'response'})
+            .map((retorno: any) => {
+                return retorno;
+            })
+    }
 }

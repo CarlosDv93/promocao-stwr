@@ -1,70 +1,174 @@
 <div class="container tipoProm border border-primary">
-  <h4>Tipo Promoção:</h4>
+  <h5 style="margin-bottom: 10px; margin-top: 10px">Tipo Promoção</h5>
   <div class="row">
     <div class="col colMargin">
 
-      <form (ngSubmit)="salvarPromocao()" [formGroup]="formulario">
-        <div class="radio radio-inline">
+      <form (ngSubmit)="salvarPromocao()" [formGroup]="formulario" *ngIf="exibeLista" >
+        <div class="radio radio-inline form-check-inline">
           <label><input type="radio" name="tipo" #radioPreco formControlName="tipo" value="PRECO">Preço</label>
         </div>
 
-        <div class="radio radio-inline">
+        <div class="radio radio-inline form-check-inline">
           <label><input type="radio" name="tipo" #radioQuantidade formControlName="tipo"
               value="QUANTIDADE">Quantidade</label>
         </div>
 
         <hr>
 
+        <!-- Formulário Preço -->
         <div class="formPreco" *ngIf="this.formulario.value.tipo === 'PRECO'">
           <div class="nome">
             <label>Nome Promoção: </label>
-            <input type="text" id="nome" class="form-control" formControlName="nome"
-              placeholder="Leve X Produtos por Y" />
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Leve X Produtos por Y"
+              required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
           </div>
 
           <br>
 
           <div class="qtd">
             <label> Quantidade de Itens para ativar a promoção</label> <br>
-            <input type="number" formControlName="qtde" placeholder="5" />
+            <input type="number" class="form-control col-5" formControlName="qtde" placeholder="5" required min="1"
+              id="qtde" value="0"
+              [ngClass]="{'is-invalid': formulario.get('qtde').touched && formulario.get('qtde').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
           </div>
 
           <br>
 
           <div class="pagar">
             <label> Valor a Pagar pelos itens da promoção</label> <br>
-            <input type="number" formControlName="pagar" placeholder="20" />
+            <input type="number" class="form-control col-5" formControlName="pagar" placeholder="20" required min=0
+              id="pagar" value=0
+              [ngClass]="{'is-invalid': formulario.get('pagar').touched && formulario.get('pagar').invalid,
+                'is-valid': formulario.get('pagar').touched && formulario.get('pagar').valid}" />
 
           </div>
           <br>
         </div>
 
+        <!-- Form que será apresentado quando o QUANTIDADE for marcado -->
+
         <div class="formPreco" *ngIf="this.formulario.value.tipo === 'QUANTIDADE'">
           <div class="nome">
             <label>Nome Promoção: </label>
-            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y" />
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
+              required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
+              'is-valid': formulario.get('nome').touched && formulario.get('nome').valid}" />
           </div>
 
           <br>
 
           <div class="qtd">
             <label> Quantidade de Itens a levar para ativar a promoção </label> <br>
-            <input type="number" formControlName="qtde" placeholder="3" />
+            <input type="number" class="form-control col-5" formControlName="qtde" placeholder="20" required min=0
+              id="qtde" value=0
+              [ngClass]="{'is-invalid': formulario.get('qtde').touched && formulario.get('qtde').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
           </div>
 
           <br>
 
           <div class="pagar">
             <label> Quantidade de itens que serão pagos </label> <br>
-            <input type="number" formControlName="pagar" placeholder="2" />
-
+            <input type="number" class="form-control col-5" formControlName="pagar" placeholder="2" required min="0"
+              [ngClass]="{'is-invalid': formulario.get('pagar').touched && formulario.get('pagar').invalid,
+              'is-valid': formulario.get('pagar').touched && formulario.get('pagar').valid}" />
           </div>
           <br>
         </div>
 
         &nbsp;
-        <div class="d-flex flex-row-reverse">
-          <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="d-flex flex-row-reverse" *ngIf="exibeLista" >
+          <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Salvar</button>
+        </div>
+        <div class="d-flex flex-row-reverse" *ngIf="!exibeLista" >
+          <button type="submit" class="btn btn-primary" (ngSubmit)="atualizarProm()" [disabled]="formulario.invalid">Alterar</button>
+        </div>
+
+      </form>
+
+      <form (ngSubmit)="atualizarProm()" [formGroup]="formulario" *ngIf="!exibeLista" >
+        <div class="radio radio-inline form-check-inline">
+          <label><input type="radio" name="tipo" #radioPreco formControlName="tipo" value="PRECO">Preço</label>
+        </div>
+
+        <div class="radio radio-inline form-check-inline">
+          <label><input type="radio" name="tipo" #radioQuantidade formControlName="tipo"
+              value="QUANTIDADE">Quantidade</label>
+        </div>
+
+        <hr>
+
+        <!-- Formulário Preço -->
+        <div class="formPreco" *ngIf="this.formulario.value.tipo === 'PRECO'">
+          <div class="nome">
+            <label>Nome Promoção: </label>
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Leve X Produtos por Y"
+              required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
+          </div>
+
+          <br>
+
+          <div class="qtd">
+            <label> Quantidade de Itens para ativar a promoção</label> <br>
+            <input type="number" class="form-control col-5" formControlName="qtde" placeholder="5" required min="1"
+              id="qtde" value="0"
+              [ngClass]="{'is-invalid': formulario.get('qtde').touched && formulario.get('qtde').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
+          </div>
+
+          <br>
+
+          <div class="pagar">
+            <label> Valor a Pagar pelos itens da promoção</label> <br>
+            <input type="number" class="form-control col-5" formControlName="pagar" placeholder="20" required min=0
+              id="pagar" value=0
+              [ngClass]="{'is-invalid': formulario.get('pagar').touched && formulario.get('pagar').invalid,
+                'is-valid': formulario.get('pagar').touched && formulario.get('pagar').valid}" />
+
+          </div>
+          <br>
+        </div>
+
+        <!-- Form que será apresentado quando o QUANTIDADE for marcado -->
+
+        <div class="formPreco" *ngIf="this.formulario.value.tipo === 'QUANTIDADE'">
+          <div class="nome">
+            <label>Nome Promoção: </label>
+            <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
+              required [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
+              'is-valid': formulario.get('nome').touched && formulario.get('nome').valid}" />
+          </div>
+
+          <br>
+
+          <div class="qtd">
+            <label> Quantidade de Itens a levar para ativar a promoção </label> <br>
+            <input type="number" class="form-control col-5" formControlName="qtde" placeholder="20" required min=0
+              id="qtde" value=0
+              [ngClass]="{'is-invalid': formulario.get('qtde').touched && formulario.get('qtde').invalid,
+              'is-valid': formulario.get('qtde').touched && formulario.get('qtde').valid}" />
+          </div>
+
+          <br>
+
+          <div class="pagar">
+            <label> Quantidade de itens que serão pagos </label> <br>
+            <input type="number" class="form-control col-5" formControlName="pagar" placeholder="2" required min="0"
+              [ngClass]="{'is-invalid': formulario.get('pagar').touched && formulario.get('pagar').invalid,
+              'is-valid': formulario.get('pagar').touched && formulario.get('pagar').valid}" />
+          </div>
+          <br>
+        </div>
+
+        &nbsp;
+        <div class="d-flex flex-row-reverse" *ngIf="exibeLista" >
+          <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Salvar</button>
+        </div>
+        <div class="d-flex flex-row-reverse" *ngIf="!exibeLista" >
+          <button type="submit" class="btn btn-primary" (ngSubmit)="atualizarProm()" [disabled]="formulario.invalid">Alterar</button>
         </div>
 
       </form>
@@ -75,8 +179,10 @@
 </div>
 
 <!--  Lista de Promocao  -->
+<br />
+<br />
 
-<div class="container table-responsive">
+<div class="container table-responsive" *ngIf="exibeLista">
   <div class="row">
     <h2>Lista de Produtos Cadastrados</h2>
 
