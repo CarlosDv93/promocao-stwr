@@ -1,51 +1,56 @@
-<div class="form-group colMargin">
-  <form (ngSubmit)="salvar()" [formGroup]="sel1">
-    <label for="sel1">Selecione a promocao:</label>
-    <select class="form-control" id="sel1" formControlName="sel1" (change)="filterChanged($event.target.value)">
-      <option *ngFor="let prom of promocoes; let i = index" (click)="onChange($event, i)" [value]="prom.id">
-        {{ prom.nome }}</option>
-    </select>
-  </form>
-</div>
+<div class="border border-primary colMargin">
+  <div class="row">
+    <div class="col colMargin">
+
+      <h4>Tipo Promoção:</h4>
+
+      <form (ngSubmit)="salvarPromocao()" [formGroup]="formulario">
+
+        <label for="sel1">Selecione a promocao:</label>
+        <select class="form-control" id="sel1" #selectValue (change)="filterChanged($event.target.value)">
+          <option value="-1" selected disabled hidden>Escolha uma Promoção</option>
+          <option *ngFor="let prom of promocoes; let i = index" (click)="onChange($event, i)" [value]="prom.id">
+            {{ prom.nome }}</option>
+        </select>
+
+        <br> 
+
+        <div class="radio radio-inline form-check-inline">
+          <label><input type="radio" name="tipo" formControlName="tipo" value="PRECO" readonly>Preço</label>
+        </div>
+
+        <div class="radio radio-inline form-check-inline">
+          <label><input type="radio" name="tipo" formControlName="tipo" value="QUANTIDADE" readonly>Quantidade</label>
+        </div>
 
 
-<h4>Tipo Promoção:</h4>
-<div class="row">
-  <div class="col colMargin">
+        <div class="nome">
+          <label for="nome">Nome Promoção: </label> <br>
+          <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
+            readonly />
+        </div>
 
-    <form (ngSubmit)="salvarPromocao()" [formGroup]="formulario">
-      <div class="radio">
-        <label><input type="radio" name="tipo" formControlName="tipo" value="PRECO" disabled>Preço</label>
-      </div>
+        <br>
 
-      <div class="radio">
-        <label><input type="radio" name="tipo" formControlName="tipo" value="QUANTIDADE" disabled>Quantidade</label>
-      </div>
+        <div class="qtd">
+          <label> Quantidade de Itens </label>
+          <input type="number" formControlName="qtdeItens" readonly />
+        </div>
 
+        <br>
 
-      <div class="nome">
-        <label>Nome Promoção: </label>
-        <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Compre X Pague Y"
-          disabled />
-      </div>
+        <div class="pagar">
+          <label> Valor a Pagar ou Qtde de Itens a pagar </label>
+          <input type="number" formControlName="valor" readonly />
 
-      <br>
+        </div>
+        <br>
 
-      <div class="qtd">
-        <label> Quantidade de Itens </label>
-        <input type="number" formControlName="qtdeItens" disabled />
-      </div>
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Salvar</button>
+        &nbsp;
+        <button type="reset" class="btn btn-danger">Cancelar</button>
 
-      <br>
-
-      <div class="pagar">
-        <label> Valor a Pagar ou Qtde de Itens a pagar </label>
-        <input type="number" formControlName="valor" disabled />
-
-      </div>
-      <br>
-
-      <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

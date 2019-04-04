@@ -20,7 +20,7 @@ public class Produto implements Serializable {
 	private Long id;
 	
 	private String nome;
-	private String valor;
+	private int valor;
 	
 	@ManyToOne
 	private Promocao promocao;
@@ -29,7 +29,7 @@ public class Produto implements Serializable {
 		
 	}
 	
-	public Produto(String nome, String valor, Promocao promocao) {
+	public Produto(String nome, int valor, Promocao promocao) {
 		this.nome = nome;
 		this.valor = valor;
 		this.promocao = promocao;
@@ -47,11 +47,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getValor() {
+	public int getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(int valor) {
 		this.valor = valor;
 	}
 

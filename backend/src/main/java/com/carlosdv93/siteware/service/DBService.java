@@ -27,13 +27,13 @@ public class DBService {
 	@Bean
 	public void instatiateDatabase() {
 		
-		Produto prod1 = new Produto("Produto 1", "5", null);
+		Produto prod1 = new Produto("Produto 1", 5, null);
 		produtoRP.save(prod1);
 		
-		Produto prod2 = new Produto("Produto 2", "10", null);
+		Produto prod2 = new Produto("Produto 2", 10, null);
 		produtoRP.save(prod2);
 		
-		Produto prod3 = new Produto("Produto 3", "10", null);
+		Produto prod3 = new Produto("Produto 3", 10, null);
 		produtoRP.save(prod3);
 		
 		
