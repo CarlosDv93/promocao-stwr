@@ -1,4 +1,4 @@
-<div class="container top">
+<div class="container topMargin">
   <div class="row">
     <div class="col">
       <form method="POST" (ngSubmit)="enviar()" [formGroup]="formulario">
@@ -8,8 +8,12 @@
         <label>Valor: </label>
         <input id="valor" class="form-control" formControlName="valor" type="number" min="0" placeholder="0" />
         <br>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+
+        <button type="submit" class="btn btn-primary">Salvar</button> 
+
+        <button type="reset" class="btn btn-danger">Cancelar</button>
       </form>
+
     </div>
   </div>
 
@@ -38,8 +42,4 @@
 
   <hr>
 
-</div>
-
-<div>
-  <app-lista-produtos [atualizar]="atualizar" [editar]="editar"></app-lista-produtos>
 </div>

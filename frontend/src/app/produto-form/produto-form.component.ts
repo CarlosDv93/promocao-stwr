@@ -1,5 +1,5 @@
 import { ProdutoService } from 'src/app/service/produto.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class ProdutoFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private http : HttpClient,
     private prodService : ProdutoService) { 
-
+      
   }
 
   ngOnInit() {

@@ -46,4 +46,12 @@ export class ProdutoService {
                 return retorno;
             })
     }
+
+    public editarProduto(id: number, formulario: Produto){
+        return this.http.put<Produto>(`${this.url_api}/produto/editar/${id}`, formulario, {observe: 'response'})
+            .map((retorno : any) => {
+                console.log("Produto editado: ", retorno);
+                return retorno;
+            })
+    }
 }
