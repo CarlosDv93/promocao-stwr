@@ -12,8 +12,6 @@ export class ListaProdutosComponent implements OnInit, OnChanges {
 
   public produtos : Produto[];
   @Input() atualizar : Boolean;
-  @Input() editar : Boolean;
-
 
   constructor(private http : HttpClient) { 
   }
@@ -28,7 +26,6 @@ export class ListaProdutosComponent implements OnInit, OnChanges {
     if(this.atualizar == true){
       this.atualizarLista();
       this.atualizar = false;
-      this.editar = false;
     }
   }
 
@@ -43,7 +40,6 @@ export class ListaProdutosComponent implements OnInit, OnChanges {
 
   atualizarLista() {
     this.buscarProdutos();
-    this.editar = true;
   }
 
 }

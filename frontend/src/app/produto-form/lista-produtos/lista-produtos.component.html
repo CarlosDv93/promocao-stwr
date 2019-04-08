@@ -1,4 +1,4 @@
-<div class="container table-responsive" *ngIf="!editar" > {{editar}}
+<div class="container table-responsive">
   <div class="row">
     <h2>Lista de Produtos Cadastrados</h2>
 
@@ -17,7 +17,7 @@
           <td>{{produto.nome}}</td>
           <td>{{produto.valor}}</td>
           <td>
-            <i class="material-icons" > <a [routerLink]="['produto/editar', produto.id]" title="Editar"> mode_edit </a></i>
+            <i class="material-icons" > <a [routerLink]="['produto', produto.id]" title="Editar"> mode_edit </a></i>
             &nbsp;
             <i class="material-icons"> <a [routerLink]="['produto', produto.id]" title="Vincular Promocao"> add_to_queue  </a> </i> 
           </td>
