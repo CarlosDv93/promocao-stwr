@@ -55,7 +55,7 @@ export class CarrinhoComponent implements OnInit, OnChanges {
     if (produto.promocao == null) {
       produto.valorPagar = produto.valor * this.qtdeForm.value;
     } else if (produto.promocao.tipo == TipoPromocao.PRECO) {
-      if (this.qtdeForm.value > produto.promocao.qtde) {
+      if (this.qtdeForm.value >= produto.promocao.qtde) {
         //Valor a Pagar / Quantidade de promocao usada
         let promQtde = this.qtdeForm.value / produto.promocao.qtde;
         promQtde = Math.trunc(promQtde);
