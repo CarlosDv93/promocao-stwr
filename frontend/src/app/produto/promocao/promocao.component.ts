@@ -80,9 +80,10 @@ export class PromocaoComponent implements OnInit, OnChanges {
     this.produto.promocao = this.promocao;
 
     console.log("produtoxprom", this.produto);
-    this.produto = this.prodService.atualizaPromocao(this.produto.id, this.produto)
+    this.prodService.atualizaPromocao(this.produto.id, this.produto)
       .subscribe((retorno: any) => {
-        return retorno;
+        this.produto = retorno;
+        return this.produto;
       })
 
   }
