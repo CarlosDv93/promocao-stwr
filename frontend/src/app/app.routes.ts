@@ -1,3 +1,4 @@
+import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -11,6 +12,7 @@ export const APP_ROUTES: Routes = [
     {path: "", component: ProdutoFormComponent},
     {path: "carrinho", component: CarrinhoComponent},
     {path: "produto/:id", component: ProdutoComponent},
+    {path: "produto/editar/:id", component: EditarProdutoComponent},
     {path: "promocao/:id", component: PromocaoFormComponent},
     {path: "promocao", component: PromocaoFormComponent}
 ]

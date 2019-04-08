@@ -70,7 +70,6 @@ public class ProdutoController {
 			Produto prod = produto1.get();
 			prod.setNome(produto.getNome());
 			prod.setValor(produto.getValor());
-			prod.setPromocao(produto.getPromocao());
 			repository.save(prod);
 			return ResponseEntity.ok(produto);
 		} else {

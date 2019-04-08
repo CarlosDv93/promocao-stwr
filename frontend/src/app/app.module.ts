@@ -13,6 +13,7 @@ import { TopoComponent } from './topo/topo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { routing } from './app.routes';
 import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
+import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
     PromocaoComponent,
     ProdutoComponent,
     TopoComponent,
-    PromocaoFormComponent
+    PromocaoFormComponent,
+    EditarProdutoComponent
   ],
   imports: [
     BrowserModule,
