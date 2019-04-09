@@ -22,6 +22,10 @@ export class PromocaoComponent implements OnInit, OnChanges {
   public promocoes: Promocao[];
   public promocao: Promocao;
 
+  public atualizadoSucesso: Boolean;
+  public primeiroAcesso: Boolean = true;
+  
+
   constructor(private formBuilder: FormBuilder,
     private promService: PromocaoService,
     private prodService: ProdutoService) { }
@@ -73,16 +77,14 @@ export class PromocaoComponent implements OnInit, OnChanges {
 
   salvarPromocao() {
 
-    console.log(this.formulario.value);
-    console.log(this.produto);
-    console.log(this.promocao);
-
     this.produto.promocao = this.promocao;
 
     console.log("produtoxprom", this.produto);
     this.prodService.atualizaPromocao(this.produto.id, this.produto)
       .subscribe((retorno: any) => {
         this.produto = retorno;
+        this.primeiroAcesso = false;
+        this.atualizadoSucesso = true;
         return this.produto;
       })
 

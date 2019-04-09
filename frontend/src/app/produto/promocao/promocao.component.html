@@ -51,6 +51,31 @@
         <button type="reset" class="btn btn-danger">Cancelar</button>
 
       </form>
+
+
+      <div>
+
+        <!-- Inserido com sucesso -->
+        <div *ngIf="atualizadoSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong class="d-flex justify-content-center">Promoção inserida com sucesso</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    
+        <!--Não inserido -->
+        <div *ngIf="!atualizadoSucesso && !primeiroAcesso" class="alert alert-danger alert-dismissible fade show"
+          role="alert">
+    
+          <strong class="d-flex justify-content-center">Não foi possível atualizar a promoção</strong>
+    
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    
+      </div>
+
     </div>
   </div>
 </div>
