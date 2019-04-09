@@ -3,12 +3,15 @@
     <div class="col">
       <form method="POST" (ngSubmit)="enviar()" [formGroup]="formulario">
         <label>Nome: </label>
-        <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Cereal" />
+        <input type="text" id="nome" class="form-control" formControlName="nome" placeholder="Cereal" [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid, 
+            'is-valid': formulario.get('nome').touched && formulario.get('nome').valid}" />
 
-        <label>Valor: </label>
-        <input id="valor" class="form-control" formControlName="valor" type="number" min="0" placeholder="0" />
+        <label>Valor (R$):</label>
+        <input id="valor" class="form-control" formControlName="valor" type="number" min="0.01" step="0.01" placeholder="0" [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('valor').invalid, 
+            'is-valid': formulario.get('valor').touched && formulario.get('nome').valid}" />
         <br>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid"
+          [ngClass]="{'is-invalid': formulario.invalid}">Salvar</button>
       </form>
     </div>
   </div>

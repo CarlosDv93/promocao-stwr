@@ -35,7 +35,7 @@ export class ProdutoFormComponent implements OnInit {
   public configurarFormulario() {
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
-      valor: [null, [Validators.required]]
+      valor: [null, [Validators.required, Validators.min(0.01)]]
     });
   }
   
