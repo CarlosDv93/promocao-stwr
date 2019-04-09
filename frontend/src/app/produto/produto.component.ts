@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { ProdutoService } from '../service/produto.service';
 import { Produto } from '../model/produto.model';
+/*Para adicionar R$ 9,99*/
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';

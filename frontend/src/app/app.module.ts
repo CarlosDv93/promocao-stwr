@@ -14,6 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { routing } from './app.routes';
 import { PromocaoFormComponent } from './promocao-form/promocao-form.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { EditarProdutoComponent } from './editar-produto/editar-produto.componen
   ],
   providers: [
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    {provide: LOCALE_ID, useValue: 'pt'}
   ],
   bootstrap: [AppComponent]
 })

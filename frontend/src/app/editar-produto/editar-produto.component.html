@@ -7,7 +7,7 @@
            [ngClass]="{'is-invalid': formulario.get('nome').touched && formulario.get('nome').invalid,
             'is-valid': formulario.get('nome') && formulario.get('nome').valid}" />
 
-        <label>Valor: </label>
+        <label>Valor (R$): </label>
         <input id="valor" class="form-control" formControlName="valor" type="number" min="0.01" placeholder="0" step='.01' [ngClass]="{'is-invalid': formulario.get('valor').touched && formulario.get('valor').invalid,
         'is-valid': formulario.get('valor') && formulario.get('valor').valid}" />
         <br>

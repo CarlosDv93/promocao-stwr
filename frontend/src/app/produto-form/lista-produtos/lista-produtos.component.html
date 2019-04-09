@@ -15,7 +15,7 @@
         <tr *ngFor="let produto of produtos">
           <th scope="row">{{produto.id}}</th>
           <td>{{produto.nome}}</td>
-          <td>{{produto.valor}}</td>
+          <td> {{ produto.valor | currency:'BRL': 'symbol'}}</td>
           <td>
             <i class="material-icons" > <a [routerLink]="['produto/editar', produto.id]" title="Editar"> mode_edit </a></i>
             &nbsp;
